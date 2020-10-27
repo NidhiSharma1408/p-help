@@ -30,6 +30,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         coming_data = request.data
+        print(coming_data)
         request_email = coming_data.get("email", "")
         if request_email:
             user = User.objects.filter(email__iexact = request_email)
@@ -46,23 +47,6 @@ class UserViewSet(viewsets.ModelViewSet):
                 return Response(status = status.HTTP_200_OK)
         else:
             return Response(status = status.HTTP_400_BAD_REQUEST)
-    # def partial_update(self, request, *args, **kwargs):
-    #     kwargs['partial'] = True
-    #     return self.update(request, *args, **kwargs)
-    # def update(self, request, pk):
-    #     new_password = request.data.get('password', "")
-    #     if new_password:
-    #         user = User.objects.get(pk = pk)
-    #         user.set_password(new_password)
-    #         user.save()
-    #         serializer = UserProfileSerializer(user.profile,context={'request': request})
-    #         data = dict()
-    #         data['email']  = user.email
-    #         data.update(serializer.data)
-    #         mail_body = "you have succesfully changed your password for your account"
-    #         send_mail('Greetings from Plasma Tracker Team', mail_body, 'plasma.tracker.app@gmail.com', [user.email], fail_silently = False) 
-    #         return Response(data, status = status.HTTP_202_ACCEPTED)
-    #     return Response(status = status.HTTP_400_BAD_REQUEST)
 
     def get_permissions(self):
         permission_classes = []
@@ -109,7 +93,6 @@ class OTPVerificationView(APIView):
             send_mail('Greetings', mail_body, 'plasma.tracker.app@gmail.com', [request_email], fail_silently = False) 
             return Response(status = status.HTTP_202_ACCEPTED)
         return Response(status = status.HTTP_400_BAD_REQUEST)
-
 
 
 # Password Reset View
