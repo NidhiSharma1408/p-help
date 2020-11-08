@@ -44,7 +44,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):    
     class Meta:
         model = UserProfile
-        fields = ('id','name','blood_grp','picture','address','city','state','phone','covid_patient','recovered','got_help','when_recovered','want_to_donate','can_donate','available_as_donor','needs_help')
+        fields = ('id','name','blood_grp','picture','address','city','state','phone','covid_patient','recovered','got_help','when_recovered','want_to_donate','can_donate','available_as_donor','needs_help','age')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
