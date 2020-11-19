@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.core.mail import send_mail
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny,IsAuthenticated
@@ -47,6 +48,7 @@ class RequestModelViewset(ModelViewSet):
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
