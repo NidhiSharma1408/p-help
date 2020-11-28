@@ -5,8 +5,7 @@ from django.conf import settings
 import os
 import django_heroku
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'mq9o2s92n0ae(0r@y$*dlodbx)i50e4tx*lzs8iiz9n&%i)t67'
-# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
@@ -57,7 +56,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('DATABASE_NAME'),
-        
+      
         'USER': os.environ.get('DATABASE_USER'),
         
         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
