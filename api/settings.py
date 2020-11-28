@@ -124,11 +124,10 @@ SIMPLE_JWT = {
 }
 #Email Notifications
 EMAIL_USE_TLS=True
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-DEFALUT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_USER = 'plasma.tracker.app@gmail.com'
+EMAIL_HOST_PASSWORD = 'anushkanidhi'
 django_heroku.settings(locals())
 try:
     from .local_settings import *
