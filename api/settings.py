@@ -123,11 +123,12 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 #Email Notifications
+EMAIL_USE_TLS=True
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
+DEFALUT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 django_heroku.settings(locals())
 try:
     from .local_settings import *
