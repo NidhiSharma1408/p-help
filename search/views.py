@@ -1,17 +1,17 @@
-from django.shortcuts import render
+from django.http import Http404
 from django.utils import timezone
+from django.shortcuts import render
 from django.core.mail import send_mail
+from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from userauth.models import UserProfile
-from rest_framework.response import Response
-from rest_framework import status
-from django.http import Http404
-from . import serializers
-from . import models
+from . import serializers,models
 from .permissions import IsSender,IsReceiver
-# Create your views here.
+
+
 class SearchView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self,request):
@@ -24,6 +24,7 @@ class SearchView(APIView):
             if user.available_as_donor():
                 response.append({'id':user.id,'name':user.name,'email':user.user.email,'phone':user.phone, 'address' :f"{user.address}, {user.city}, {user.state}"})
         return Response(response[:50])
+
 
 class RequestModelViewset(ModelViewSet):
     model = models.DonationRequest
@@ -68,6 +69,7 @@ class RequestModelViewset(ModelViewSet):
         elif self.action == 'list':
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]  
+
 
 class DonationHistoryView(ModelViewSet):
     model = models.DonationHistory
